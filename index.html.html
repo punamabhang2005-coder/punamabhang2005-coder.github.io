@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Punam Abhang – Developer &amp; Builder</title>
+<style>
+:root{--bg:#070a1a;--bg2:#0d1230;--surface:rgba(255,255,255,.05);--text:#eef0ff;--muted:#a3a9cc;--a1:#7c5cff;--a2:#22d3ee;--a3:#ff6bd6;--border:rgba(255,255,255,.12);--dot:180,190,255;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f6f4ff;--bg2:#e9e5ff;--surface:rgba(255,255,255,.75);--text:#1a1740;--muted:#55587f;--a1:#5b3df5;--a2:#0891b2;--a3:#d6309f;--border:rgba(40,30,120,.14);--dot:90,70,200;color-scheme:light}}
+:root[data-theme="light"]{--bg:#f6f4ff;--bg2:#e9e5ff;--surface:rgba(255,255,255,.75);--text:#1a1740;--muted:#55587f;--a1:#5b3df5;--a2:#0891b2;--a3:#d6309f;--border:rgba(40,30,120,.14);--dot:90,70,200;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.65;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:20;background:var(--bg)}
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+.glow{position:fixed;z-index:0;border-radius:50%;filter:blur(110px);opacity:.35;pointer-events:none}
+.g1{width:420px;height:420px;background:var(--a1);top:-120px;left:-120px}
+.g2{width:380px;height:380px;background:var(--a3);bottom:-140px;right:-100px;opacity:.22}
+main,header.top{position:relative;z-index:2}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 60%,transparent);border-bottom:1px solid var(--border)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+.logo{font-weight:800;letter-spacing:.02em;background:linear-gradient(90deg,var(--a2),var(--a3));-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{display:flex;gap:18px;align-items:center;font-size:14px}
+nav a{color:var(--muted);text-decoration:none}nav a:hover{color:var(--text)}
+nav a.hide{display:none}
+@media(min-width:640px){nav a.hide{display:inline}}
+#theme{background:none;border:1px solid var(--border);color:var(--text);border-radius:99px;width:34px;height:34px;cursor:pointer;font-size:15px}
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding:70px 0 50px}
+.hi{color:var(--a2);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px;margin:0 0 10px}
+h1{font-size:clamp(40px,9vw,84px);line-height:1.02;margin:0 0 16px;letter-spacing:-.035em;font-weight:800}
+h1 span{background:linear-gradient(100deg,var(--a1),var(--a2) 50%,var(--a3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.role{font-size:clamp(18px,3.4vw,28px);color:var(--muted);min-height:1.5em;margin:0 0 20px}
+.role b{color:var(--text);font-weight:600}
+.cursor{display:inline-block;width:2px;height:1em;background:var(--a2);margin-left:3px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.lead{max-width:600px;color:var(--muted);font-size:17px;margin:0 0 28px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;text-decoration:none;font-size:15px;font-weight:600;border:1px solid var(--border);color:var(--text);background:var(--surface);backdrop-filter:blur(8px);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px -10px var(--a1)}
+.btn.main{background:linear-gradient(100deg,var(--a1),var(--a3));border:none;color:#fff}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:46px}
+@media(min-width:700px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px 18px;backdrop-filter:blur(8px)}
+.stat b{display:block;font-size:30px;background:linear-gradient(100deg,var(--a2),var(--a1));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{font-size:13px;color:var(--muted)}
+section{padding:70px 0}
+.eyebrow{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;color:var(--a2);letter-spacing:.1em;text-transform:uppercase;margin:0 0 8px}
+h2{font-size:clamp(28px,5vw,42px);margin:0 0 30px;letter-spacing:-.02em}
+.grid{display:grid;gap:20px}
+@media(min-width:760px){.grid.two{grid-template-columns:1fr 1fr}}
+.card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:26px;backdrop-filter:blur(10px);overflow:hidden;transition:transform .25s,border-color .25s;transform-style:preserve-3d}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(380px circle at var(--mx,50%) var(--my,0%),color-mix(in srgb,var(--a1) 30%,transparent),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover{border-color:color-mix(in srgb,var(--a1) 60%,var(--border))}
+.card:hover::before{opacity:1}
+.card .num{font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--a3);font-size:13px}
+.card h3{font-size:24px;margin:6px 0 10px}
+.card p{margin:0 0 16px;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:12.5px;padding:4px 11px;border-radius:99px;border:1px solid var(--border);color:var(--muted);background:color-mix(in srgb,var(--bg) 50%,transparent)}
+.card a.link{display:inline-block;margin-top:16px;color:var(--a2);text-decoration:none;font-weight:600;font-size:14px}
+.card a.link:hover{text-decoration:underline}
+.orbs{display:grid;gap:22px}
+.orbgroup h4{margin:0 0 12px;font-size:14px;color:var(--muted);font-weight:600;letter-spacing:.04em}
+.orbrow{display:flex;flex-wrap:wrap;gap:10px}
+.orb{padding:9px 16px;border-radius:99px;font-size:14px;font-weight:600;border:1px solid var(--border);background:var(--surface);backdrop-filter:blur(8px);animation:float 5s ease-in-out infinite;transition:box-shadow .2s,transform .2s}
+.orb:nth-child(2n){animation-delay:-1.3s}.orb:nth-child(3n){animation-delay:-2.6s}.orb:nth-child(5n){animation-delay:-3.8s}
+.orb:hover{box-shadow:0 0 22px var(--a1);transform:scale(1.07)}
+@keyframes float{50%{transform:translateY(-6px)}}
+.timeline{position:relative;padding-left:26px;border-left:2px solid var(--border);display:grid;gap:22px}
+.tl{position:relative}
+.tl::before{content:"";position:absolute;left:-33px;top:6px;width:12px;height:12px;border-radius:50%;background:linear-gradient(var(--a2),var(--a3));box-shadow:0 0 14px var(--a2)}
+.tl b{display:block;font-size:17px}.tl span{color:var(--muted);font-size:14px}
+.contact{text-align:center}
+.contact p{color:var(--muted);max-width:520px;margin:0 auto 26px}
+.contact .btns{justify-content:center}
+footer{position:relative;z-index:2;text-align:center;padding:30px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--border)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.orb,.cursor{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="glow g1"></div><div class="glow g2"></div>
+
+<header class="top"><div class="wrap">
+<span class="logo">punam.dev</span>
+<nav>
+<a class="hide" href="#about">About</a><a href="#projects">Projects</a><a class="hide" href="#skills">Skills</a><a class="hide" href="#journey">Journey</a><a href="#contact">Contact</a>
+<button id="theme" aria-label="Toggle theme" title="Toggle theme">◐</button>
+</nav>
+</div></header>
+
+<main class="wrap">
+<div class="hero">
+<p class="hi">&gt; hello, world. I’m</p>
+<h1><span>Punam Abhang</span></h1>
+<p class="role">I’m a <b id="typed"></b><span class="cursor"></span></p>
+<p class="lead">Computer Engineering student at PCCOER, Pune. I turn messy real-world problems into working software, from NLP that understands what people mean to web apps people actually use.</p>
+<div class="btns">
+<a class="btn main" href="#projects">Explore my work →</a>
+<a class="btn" href="mailto:punamabhang07@gmail.com">✉ Email me</a>
+<a class="btn" href="https://github.com/punamabhang2005-coder">GitHub</a>
+<a class="btn" href="https://www.linkedin.com/in/punam-abhang-013328292/">LinkedIn</a>
+</div>
+<div class="stats">
+<div class="stat"><b>8.8</b><span>CGPA, B.E. Computer Engineering</span></div>
+<div class="stat"><b>3</b><span>projects built</span></div>
+<div class="stat"><b>4</b><span>certifications &amp; programs</span></div>
+<div class="stat"><b>CTF</b><span>cybersecurity hackathon, national level</span></div>
+</div>
+</div>
+
+<section id="about" class="reveal">
+<p class="eyebrow">// about</p>
+<h2>Curious by default.</h2>
+<p style="color:var(--muted);max-width:720px;font-size:18px;margin:0">I’m a final-year student (SPPU, 2023–2027) who likes understanding how things work and then building them. I enjoy the full path from an idea, to a model or an API, to a screen someone can click. I’m open to internships, full-time roles, collaborations, and interesting side projects.</p>
+</section>
+
+<section id="projects">
+<p class="eyebrow reveal">// projects</p>
+<h2 class="reveal">Things I’ve built</h2>
+<div class="grid two">
+<article class="card reveal">
+<span class="num">01</span>
+<h3>AI CityServe</h3>
+<p>Citizens write complaints in plain language. The system uses NLP to understand each one, classify it, and route it to the right department automatically, with no manual sorting.</p>
+<div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">NLP</span><span class="tag">ML</span></div>
+<a class="link" href="https://github.com/punamabhang2005-coder/AI-CityServe">View on GitHub →</a>
+</article>
+<article class="card reveal">
+<span class="num">02</span>
+<h3>Smart Student Monitor</h3>
+<p>Analyses student essays and compares them semantically with MiniLM embeddings, so it spots similar ideas even when the wording is different. Full stack, still evolving.</p>
+<div class="tags"><span class="tag">React</span><span class="tag">Node/Express</span><span class="tag">Supabase</span><span class="tag">MiniLM</span></div>
+<a class="link" href="https://github.com/punamabhang2005-coder">View on GitHub →</a>
+</article>
+<article class="card reveal" style="grid-column:1/-1">
+<span class="num">03</span>
+<h3>Toxic Comment Detection</h3>
+<p>A machine learning project that detects toxic comments in text, helping keep online conversations safer.</p>
+<div class="tags"><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">ML</span></div>
+<a class="link" href="https://github.com/punamabhang2005-coder/ToxicCommentDetection">View on GitHub →</a>
+</article>
+</div>
+</section>
+
+<section id="skills">
+<p class="eyebrow reveal">// skills</p>
+<h2 class="reveal">My toolkit</h2>
+<div class="orbs reveal">
+<div class="orbgroup"><h4>LANGUAGES</h4><div class="orbrow"><span class="orb">C++</span><span class="orb">Python</span><span class="orb">JavaScript</span><span class="orb">SQL</span><span class="orb">HTML/CSS</span></div></div>
+<div class="orbgroup"><h4>BACKEND &amp; DATA</h4><div class="orbrow"><span class="orb">Flask</span><span class="orb">REST APIs</span><span class="orb">MySQL</span><span class="orb">MongoDB</span></div></div>
+<div class="orbgroup"><h4>AI / ML</h4><div class="orbrow"><span class="orb">Machine Learning</span><span class="orb">NLP</span></div></div>
+<div class="orbgroup"><h4>TOOLS</h4><div class="orbrow"><span class="orb">Git</span><span class="orb">GitHub</span></div></div>
+</div>
+</section>
+
+<section id="journey">
+<p class="eyebrow reveal">// journey</p>
+<h2 class="reveal">Learning &amp; milestones</h2>
+<div class="timeline reveal">
+<div class="tl"><b>B.E. Computer Engineering</b><span>PCCOER, Pune (SPPU) · 2023–2027 · 8.8 CGPA</span></div>
+<div class="tl"><b>Python Full Stack Development</b><span>Certification · EduSkills</span></div>
+<div class="tl"><b>AWS Cloud Fundamentals</b><span>Certification</span></div>
+<div class="tl"><b>ServiceNow</b><span>Micro-certification</span></div>
+<div class="tl"><b>Wipro TalentNext Wave</b><span>Program</span></div>
+<div class="tl"><b>Cybersecurity CTF Hackathon</b><span>National-level participant · security problem solving under pressure</span></div>
+</div>
+</section>
+
+<section id="contact" class="contact reveal">
+<p class="eyebrow">// contact</p>
+<h2>Let’s build something.</h2>
+<p>Hiring, collaborating, or just want to talk tech? My inbox is open.</p>
+<div class="btns">
+<a class="btn main" href="mailto:punamabhang07@gmail.com">punamabhang07@gmail.com</a>
+<a class="btn" href="https://github.com/punamabhang2005-coder">GitHub</a>
+<a class="btn" href="https://www.linkedin.com/in/punam-abhang-013328292/">LinkedIn</a>
+</div>
+</section>
+</main>
+
+<footer>Designed &amp; built by Punam Abhang · Pune, India</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* theme toggle */
+  document.getElementById('theme').addEventListener('click',function(){
+    var dark=getComputedStyle(root).colorScheme==='dark';
+    root.setAttribute('data-theme',dark?'light':'dark');
+  });
+
+  /* typing roles */
+  var roles=['software developer','NLP tinkerer','full-stack builder','problem solver','CTF participant'];
+  var el=document.getElementById('typed'),ri=0,ci=0,del=false;
+  function type(){
+    var w=roles[ri];
+    if(reduce){el.textContent=roles[0];return;}
+    el.textContent=w.slice(0,ci);
+    if(!del&&ci<w.length){ci++;setTimeout(type,80);}
+    else if(!del){del=true;setTimeout(type,1400);}
+    else if(ci>0){ci--;setTimeout(type,40);}
+    else{del=false;ri=(ri+1)%roles.length;setTimeout(type,300);}
+  }
+  type();
+
+  /* scroll reveal */
+  var items=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+    items.forEach(function(i){io.observe(i);});
+  }else{items.forEach(function(i){i.classList.add('in');});}
+
+  /* card spotlight + tilt */
+  document.querySelectorAll('.card').forEach(function(c){
+    c.addEventListener('mousemove',function(e){
+      var r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+      c.style.setProperty('--mx',x+'px');c.style.setProperty('--my',y+'px');
+      if(!reduce){c.style.transform='perspective(800px) rotateY('+((x/r.width-.5)*6)+'deg) rotateX('+(-(y/r.height-.5)*6)+'deg) translateY(-4px)';}
+    });
+    c.addEventListener('mouseleave',function(){c.style.transform='';});
+  });
+
+  /* constellation canvas */
+  var cv=document.getElementById('sky'),ctx=cv.getContext('2d'),W,H,pts=[],mouse={x:-999,y:-999};
+  function size(){
+    var d=Math.min(window.devicePixelRatio||1,2);
+    W=window.innerWidth;H=window.innerHeight;
+    cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0);
+    var n=Math.round(Math.min(110,W*H/14000));
+    pts=[];
+    for(var i=0;i<n;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.5+.6});
+  }
+  window.addEventListener('resize',size);
+  window.addEventListener('mousemove',function(e){mouse.x=e.clientX;mouse.y=e.clientY;});
+  window.addEventListener('touchmove',function(e){var t=e.touches[0];mouse.x=t.clientX;mouse.y=t.clientY;},{passive:true});
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    var dot=getComputedStyle(root).getPropertyValue('--dot').trim()||'180,190,255';
+    for(var i=0;i<pts.length;i++){
+      var p=pts[i];
+      if(!reduce){
+        p.x+=p.vx;p.y+=p.vy;
+        if(p.x<0||p.x>W)p.vx*=-1;
+        if(p.y<0||p.y>H)p.vy*=-1;
+        var dx=p.x-mouse.x,dy=p.y-mouse.y,dd=dx*dx+dy*dy;
+        if(dd<14000){p.x+=dx*.004;p.y+=dy*.004;}
+      }
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.283);ctx.fillStyle='rgba('+dot+',.85)';ctx.fill();
+      for(var j=i+1;j<pts.length;j++){
+        var q=pts[j],ax=p.x-q.x,ay=p.y-q.y,d2=ax*ax+ay*ay;
+        if(d2<11000){ctx.strokeStyle='rgba('+dot+','+(.22*(1-d2/11000))+')';ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}
+      }
+      var mx=p.x-mouse.x,my=p.y-mouse.y,md=mx*mx+my*my;
+      if(md<22000){ctx.strokeStyle='rgba('+dot+','+(.5*(1-md/22000))+')';ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mouse.x,mouse.y);ctx.stroke();}
+    }
+    if(!reduce)requestAnimationFrame(frame);
+  }
+  size();frame();
+})();
+</script>
+</body>
+</html>
